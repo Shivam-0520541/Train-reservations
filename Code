@@ -1,0 +1,103 @@
+CREATE DATABASE TrainReservationDB;
+
+USE TrainReservationDB;
+
+-- Train table
+CREATE TABLE Trains (
+    train_id INT AUTO_INCREMENT PRIMARY KEY,
+    train_name VARCHAR(100) NOT NULL,
+    source VARCHAR(100) NOT NULL,
+    destination VARCHAR(100) NOT NULL,
+    total_seats INT NOT NULL,
+    available_seats INT NOT NULL
+);
+
+-- Passenger table
+CREATE TABLE Passengers (
+    passenger_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    age INT NOT NULL,
+    gender VARCHAR(10) NOT NULL
+);
+
+-- Reservation table
+CREATE TABLE Reservations (
+    booking_id INT AUTO_INCREMENT PRIMARY KEY,
+    passenger_id INT NOT NULL,
+    train_id INT NOT NULL,
+    journey_date DATE NOT NULL,
+    seats_booked INT NOT NULL,
+    status VARCHAR(20) DEFAULT 'CONFIRMED',
+
+    FOREIGN KEY (passenger_id)
+    REFERENCES Passengers(passenger_id),
+
+    FOREIGN KEY (train_id)
+    REFERENCES Trains(train_id),
+
+    CHECK (seats_booked > 0)
+);
+
+-- Sample train records
+INSERT INTO Trains
+(train_name, source, destination, total_seats, available_seats)
+VALUES
+('Shatabdi Express', 'Delhi', 'Chandigarh', 100, 100),
+('Rajdhani Express', 'Delhi', 'Mumbai', 150, 150),
+('Duronto Express', 'Mumbai', 'Pune', 120, 120),
+('Vande Bharat', 'Delhi', 'Jaipur', 80, 80);
+
+-- Display trains
+SELECT * FROM Trains;
+
+CREATE DATABASE TrainReservationDB;
+
+USE TrainReservationDB;
+
+-- Train table
+CREATE TABLE Trains (
+    train_id INT AUTO_INCREMENT PRIMARY KEY,
+    train_name VARCHAR(100) NOT NULL,
+    source VARCHAR(100) NOT NULL,
+    destination VARCHAR(100) NOT NULL,
+    total_seats INT NOT NULL,
+    available_seats INT NOT NULL
+);
+
+-- Passenger table
+CREATE TABLE Passengers (
+    passenger_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    age INT NOT NULL,
+    gender VARCHAR(10) NOT NULL
+);
+
+-- Reservation table
+CREATE TABLE Reservations (
+    booking_id INT AUTO_INCREMENT PRIMARY KEY,
+    passenger_id INT NOT NULL,
+    train_id INT NOT NULL,
+    journey_date DATE NOT NULL,
+    seats_booked INT NOT NULL,
+    status VARCHAR(20) DEFAULT 'CONFIRMED',
+
+    FOREIGN KEY (passenger_id)
+    REFERENCES Passengers(passenger_id),
+
+    FOREIGN KEY (train_id)
+    REFERENCES Trains(train_id),
+
+    CHECK (seats_booked > 0)
+);
+
+-- Sample train records
+INSERT INTO Trains
+(train_name, source, destination, total_seats, available_seats)
+VALUES
+('Shatabdi Express', 'Delhi', 'Chandigarh', 100, 100),
+('Rajdhani Express', 'Delhi', 'Mumbai', 150, 150),
+('Duronto Express', 'Mumbai', 'Pune', 120, 120),
+('Vande Bharat', 'Delhi', 'Jaipur', 80, 80);
+
+-- Display trains
+SELECT * FROM Trains;
